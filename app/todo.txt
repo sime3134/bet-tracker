@@ -1,0 +1,8 @@
+Registrera sig
+Logga in
+Registrera bet
+    Titel, summa, odds
+Rapportera resultat av bet
+    Vinst, förlust, cashout(?)
+Statistik över resultat
+    Totalt, År, månad, vecka
