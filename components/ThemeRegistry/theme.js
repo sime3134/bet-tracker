@@ -7,7 +7,7 @@ const roboto = Roboto({
   display: 'swap',
 });
 
-const theme = createTheme({
+const finalTheme = createTheme({
     palette: {
         type: 'light',
         primary: {
@@ -16,10 +16,29 @@ const theme = createTheme({
         secondary: {
             main: '#E4022D',
         },
+        whiteText: {
+            main: '#fff',
+        },
+        background: {
+            default: '#fafafa',
+            paper: '#fff',
+        },
+
     },
     typography: {
         fontFamily: roboto.style.fontFamily,
     },
+    components: {
+        MuiAppBar: {
+            styleOverrides: {
+                root: ({ theme }) => ({
+                    backgroundColor: theme.palette.background.default,
+                    boxShadow: 'none',
+                    border: 0,
+                }),
+            }
+        },
+    }
 });
 
-export default theme;
+export default finalTheme;
