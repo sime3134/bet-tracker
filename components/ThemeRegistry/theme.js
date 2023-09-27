@@ -11,10 +11,10 @@ const finalTheme = createTheme({
     palette: {
         type: 'light',
         primary: {
-            main: '#443677',
+            main: '#3d5a80',
         },
         secondary: {
-            main: '#E4022D',
+            main: '#ee6c4d',
         },
         whiteText: {
             main: '#fff',
@@ -23,16 +23,16 @@ const finalTheme = createTheme({
             default: '#fafafa',
             paper: '#fff',
         },
-
     },
+
     typography: {
         fontFamily: roboto.style.fontFamily,
     },
+
     components: {
         MuiAppBar: {
             styleOverrides: {
                 root: ({ theme }) => ({
-                    backgroundColor: theme.palette.background.default,
                     boxShadow: 'none',
                     border: 0,
                 }),

@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import ResponsiveAppBar from '@/components/ResponsiveAppBar';
-import ResponsiveDrawer from './ResponsiveDrawer';
+import ResponsiveAppBar from '@/components/header/ResponsiveAppBar';
+import ResponsiveDrawer from '@/components/header/ResponsiveDrawer';
 import { Box } from '@mui/material';
-import { drawerWidth } from '@/constants';
+import { drawerWidth } from '@/utilities/constants';
+import React from 'react';
 
 const Header = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -18,10 +19,10 @@ const Header = () => {
             <ResponsiveAppBar handleDrawerToggle={handleDrawerToggle} />
             <Box
                 component="nav"
-                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+                sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
                 aria-label="drawer menu"
             >
-            <ResponsiveDrawer handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} />
+                <ResponsiveDrawer handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} />
             </Box>
         </>
     );

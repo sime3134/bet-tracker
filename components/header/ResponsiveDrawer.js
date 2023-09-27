@@ -1,5 +1,5 @@
 import { Drawer } from "@mui/material";
-import { drawerWidth } from "@/constants";
+import { drawerWidth } from "@/utilities/constants";
 import ResponsiveDrawerContent from "./ResponsiveDrawerContent";
 
 const ResponsiveDrawer = ({ handleDrawerToggle, mobileOpen }) => {
@@ -17,16 +17,16 @@ const ResponsiveDrawer = ({ handleDrawerToggle, mobileOpen }) => {
                     keepMounted: true, // Better open performance on mobile.
                 }}
                 sx={{
-                    display: { xs: 'block', sm: 'none' },
+                    display: { xs: 'block', md: 'none' },
                     '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                 }}
                 >
-                <ResponsiveDrawerContent />
+                <ResponsiveDrawerContent handleDrawerToggle={handleDrawerToggle} />
             </Drawer>
             <Drawer
                 variant="permanent"
                 sx={{
-                    display: { xs: 'none', sm: 'block' },
+                    display: { xs: 'none', md: 'block' },
                     '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                 }}
                 open

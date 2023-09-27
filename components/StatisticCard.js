@@ -1,19 +1,10 @@
 import { Box, Card, CardContent, Icon, Typography } from "@mui/material";
 
-
-
-const StatisticCard = ({ value, title, icon, currency, backgroundColor }) => {
+const StatisticCard = ({ value, title, icon, currency }) => {
     const currencyStyle = { 
         marginLeft: '4px', 
         marginBottom: '4px',
         fontSize: '1.2rem',
-    }
-
-    const getValueColor = () => {
-        if (value != 0) {
-            return 'whiteText.main';
-        }
-        return 'inherit';
     }
     
     const getBackgroundColor = () => {
@@ -26,16 +17,18 @@ const StatisticCard = ({ value, title, icon, currency, backgroundColor }) => {
     }
 
     return (
-        <Card sx={{ backgroundColor: getBackgroundColor() }}>
+        <Card raised={true} sx={{ pl:2, pr:1, pb:2, pt: 2, borderBottom: 5, borderColor: getBackgroundColor() }}>
             <CardContent>
-                <Typography variant="h5" component="div" color={getValueColor()} >
-                    <Icon sx={{ mt: 1 }} >{icon}</Icon> {title}
+                <Typography variant="h4" sx={{textAlign: 'center'}} >
+                     {title}
                 </Typography>
-                <Box display="flex" justifyContent="center" alignItems="flex-end">
-                    <Typography variant="h3" component="span" color={getValueColor()}>
-                        {value}
-                    </Typography>
-                    <Typography variant="body2" component="span" style={currencyStyle} color={getValueColor()}>
+                <Box display="flex" justifyContent="center" alignItems="flex-end" sx={{mt:5}}>
+                    <Box>
+                        <Typography variant="h4" component="span" sx={{ mt: 5, ml: 1}}>
+                        <Icon sx={{mr:1, color: getBackgroundColor() }}>{icon}</Icon>{value}
+                        </Typography>
+                    </Box>
+                    <Typography variant="body2" component="span" style={currencyStyle}>
                         {currency}
                     </Typography>
                 </Box>
