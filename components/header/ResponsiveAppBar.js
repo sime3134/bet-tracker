@@ -1,14 +1,14 @@
 import { AppBar, IconButton, Typography, Toolbar } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import { drawerWidth } from "@/constants";
+import { drawerWidth } from "@/utilities/constants";
 
 const ResponsiveAppBar = ({ handleDrawerToggle }) => {
     return (
         <AppBar
             position="fixed"
             sx={{
-                width: { sm: `calc(100% - ${drawerWidth}px)` },
-            ml: { sm: `${drawerWidth}px` },
+                width: { md: `calc(100% - ${drawerWidth}px)` },
+            ml: { md: `${drawerWidth}px` },
             }}
         >
             <Toolbar>
@@ -16,9 +16,9 @@ const ResponsiveAppBar = ({ handleDrawerToggle }) => {
                     aria-label="open drawer"
                     edge="start"
                     onClick={handleDrawerToggle}
-                    sx={{ mr: 2, display: { sm: 'none' } }}
+                    sx={{ mr: 2, display: { md: 'none' } }}
                 >
-                    <MenuIcon />
+                    <MenuIcon color="whiteText" />
                 </IconButton>
             </Toolbar>
         </AppBar>

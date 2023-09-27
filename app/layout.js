@@ -1,8 +1,10 @@
-import './globals.css'
-import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry'
-import { Box, Toolbar } from '@mui/material'
-import Header from '@/components/Header'
-import { drawerWidth } from '@/constants'
+import './globals.css';
+import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry';
+import Box from '@mui/material/Box';
+import Header from '@/components/header/Header';
+import Footer from '@/components/footer/Footer';
+import MainContent from '@/components/main_content/MainContent';
+import { drawerWidth } from '@/utilities/constants';
 
 export const metadata = {
   title: 'Bet-Tracker',
@@ -14,16 +16,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <ThemeRegistry>
         <body>
-        <Box sx={{ display: 'flex' }}>
-          <Header />
-          <Box
-            component="main"
-            sx={{ flexGrow: 1, pl: 5, pr: 5, pt: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-          >
-            <Toolbar />
-            {children}
+          <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+            <Header />
+            <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, width: { md: `calc(100% - ${drawerWidth}px)` } }}>
+              <MainContent children={children} />
+              <Footer />
+            </Box>
           </Box>
-        </Box>
         </body>
       </ThemeRegistry>
     </html>

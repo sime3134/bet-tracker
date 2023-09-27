@@ -1,25 +1,21 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
 import StatisticCard from '@/components/StatisticCard';
 import Grid from '@mui/material/Unstable_Grid2';
-import { getDateFromString } from '@/utilities/DateUtilities';
+import { getDateFromString } from '@/utilities/dateUtilities';
 import { TrendingFlat, TrendingUp, TrendingDown } from '@mui/icons-material';
 
-const DashboardStatisticCards = ( { initialBetData, dataChanged } ) => {
+const DashboardStatisticCards = ( { bets } ) => {
 
-    const calculateTotalResult = (betData, setData) => {
+    const calculateTotalResult = (betData) => {
         let totalResult = 0;
         betData.forEach(bet => {
             totalResult += bet.result;
         });
-        if(setData) {
-            setTotalResult(totalResult);
-        }
         return totalResult;
     }
     
-    const calculateResultThisYear = (betData, setData) => {
+    const calculateResultThisYear = (betData) => {
         let resultThisYear = 0;
         const today = new Date();
         betData.forEach(bet => {
@@ -28,13 +24,10 @@ const DashboardStatisticCards = ( { initialBetData, dataChanged } ) => {
                 resultThisYear += bet.result;
             }
         });
-        if(setData) {
-            setResultThisYear(resultThisYear);
-        }
         return resultThisYear;
     }
 
-    const calculateResultThisMonth = (betData, setData) => {
+    const calculateResultThisMonth = (betData) => {
         let resultThisMonth = 0;
         const today = new Date();
         betData.forEach(bet => {
@@ -44,24 +37,14 @@ const DashboardStatisticCards = ( { initialBetData, dataChanged } ) => {
                 resultThisMonth += bet.result;
             }
         });
-        if(setData) {
-            setResultThisMonth(resultThisMonth);
-        }
         return resultThisMonth;
     }
 
-    const [totalResult, setTotalResult] = useState(calculateTotalResult(initialBetData, false));
+    const totalResult = calculateTotalResult(bets);
 
-    const [resultThisMonth, setResultThisMonth] = useState(calculateResultThisMonth(initialBetData, false));
+    const resultThisMonth = calculateResultThisMonth(bets);
 
-    const [resultThisYear, setResultThisYear] = useState(calculateResultThisYear(initialBetData, false));
-
-    useEffect(() => {
-        console.log('Data changed');
-        calculateResultThisMonth(initialBetData, true);
-        calculateResultThisYear(initialBetData, true);
-        calculateTotalResult(initialBetData, true);
-    }, [dataChanged]);
+    const resultThisYear = calculateResultThisYear(bets);
 
     const getIcon = (value) => {
         if(value > 0) {
@@ -74,15 +57,15 @@ const DashboardStatisticCards = ( { initialBetData, dataChanged } ) => {
 
     return (
         <Grid container spacing={2} >
-            <Grid xs={12} lg={4} >
-                <StatisticCard value={totalResult} title="Total Result" icon={getIcon(totalResult)} currency="SEK" />
+            <Grid xs={12} xl={4} sx={{ minWidth: 340 }} >
+                <StatisticCard value={totalResult} title="Total" icon={getIcon(totalResult)} currency="SEK" />
             </Grid>
-            <Grid xs={12} lg={4}>
-                <StatisticCard value={resultThisMonth} title="Result This Month" icon={getIcon(resultThisMonth)} currency="SEK" />
+            <Grid xs={12} xl={4} sx={{ minWidth: 340 }}>
+                <StatisticCard value={resultThisYear} title="This Year" icon={getIcon(resultThisYear)} currency="SEK" />
+            </Grid>
+            <Grid xs={12} xl={4} sx={{ minWidth: 340 }}>
+                <StatisticCard value={resultThisMonth} title="This Month" icon={getIcon(resultThisMonth)} currency="SEK" />
             </Grid >
-            <Grid xs={12} lg={4}>
-                <StatisticCard value={resultThisYear} title="Result This Year" icon={getIcon(resultThisYear)} currency="SEK" />
-            </Grid>
         </Grid>
     );
 };
