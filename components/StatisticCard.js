@@ -2,7 +2,7 @@ import { Box, Card, CardContent, Icon, Typography } from "@mui/material";
 
 const StatisticCard = ({ value, title, icon, currency }) => {
     const currencyStyle = { 
-        marginLeft: '4px', 
+        marginLeft: '4px',
         marginBottom: '4px',
         fontSize: '1.2rem',
     }
@@ -17,10 +17,10 @@ const StatisticCard = ({ value, title, icon, currency }) => {
     }
 
     return (
-        <Card raised={true} sx={{ pl:2, pr:1, pb:2, pt: 2, borderBottom: 5, borderColor: getBackgroundColor() }}>
+        <Card raised={true} sx={{ pl:2, pr:2, pb:2, pt: 2, borderBottom: 5, borderColor: getBackgroundColor() }} >
             <CardContent>
-                <Typography variant="h4" sx={{textAlign: 'center'}} >
-                     {title}
+                <Typography variant="h4" sx={{textAlign: 'center'}}>
+                    {title}
                 </Typography>
                 <Box display="flex" justifyContent="center" alignItems="flex-end" sx={{mt:5}}>
                     <Box>

@@ -8,9 +8,9 @@ const BetManagementView = ( { bets, setBets } ) => {
 
     return(
         <>
-            <Typography pt={4} pb={2} variant='h4'>Manage bets</Typography>
+            <Typography pt={4} pb={4} variant='h4'>Your bets</Typography>
             <FilterableList bets={bets} />
-            <Box mt={2} display="flex" justifyContent="end">
+            <Box mt={2} mb={2} display="flex" justifyContent="end">
                 <AddBetButton />
             </Box>
         </>

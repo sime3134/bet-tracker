@@ -8,36 +8,32 @@ import { TrendingFlat, TrendingUp, TrendingDown } from '@mui/icons-material';
 const DashboardStatisticCards = ( { bets } ) => {
 
     const calculateTotalResult = (betData) => {
-        let totalResult = 0;
-        betData.forEach(bet => {
-            totalResult += bet.result;
-        });
-        return totalResult;
+        return betData.reduce((totalResult, bet) => totalResult + bet.result, 0);
     }
     
     const calculateResultThisYear = (betData) => {
-        let resultThisYear = 0;
         const today = new Date();
-        betData.forEach(bet => {
+        return betData.reduce((resultThisYear, bet) => {
             const betDate = getDateFromString(bet.date);
-            if(betDate.getYear() === today.getYear()) {
-                resultThisYear += bet.result;
+            if (betDate.getFullYear() === today.getFullYear()) {
+                return resultThisYear + bet.result;
             }
-        });
-        return resultThisYear;
+            return resultThisYear;
+    }, 0);
     }
 
     const calculateResultThisMonth = (betData) => {
-        let resultThisMonth = 0;
         const today = new Date();
-        betData.forEach(bet => {
+        return betData.reduce((resultThisMonth, bet) => {
             const betDate = getDateFromString(bet.date);
-            if (betDate.getMonth() === today.getMonth() &&
-                betDate.getYear() === today.getYear()) {
-                resultThisMonth += bet.result;
+            if (
+                betDate.getMonth() === today.getMonth() &&
+                betDate.getFullYear() === today.getFullYear()
+            ) {
+                return resultThisMonth + bet.result;
             }
-        });
-        return resultThisMonth;
+            return resultThisMonth;
+        }, 0);
     }
 
     const totalResult = calculateTotalResult(bets);
@@ -57,13 +53,13 @@ const DashboardStatisticCards = ( { bets } ) => {
 
     return (
         <Grid container spacing={2} >
-            <Grid xs={12} xl={4} sx={{ minWidth: 340 }} >
+            <Grid xs={12} xl={4} >
                 <StatisticCard value={totalResult} title="Total" icon={getIcon(totalResult)} currency="SEK" />
             </Grid>
-            <Grid xs={12} xl={4} sx={{ minWidth: 340 }}>
+            <Grid xs={12} xl={4}>
                 <StatisticCard value={resultThisYear} title="This Year" icon={getIcon(resultThisYear)} currency="SEK" />
             </Grid>
-            <Grid xs={12} xl={4} sx={{ minWidth: 340 }}>
+            <Grid xs={12} xl={4}>
                 <StatisticCard value={resultThisMonth} title="This Month" icon={getIcon(resultThisMonth)} currency="SEK" />
             </Grid >
         </Grid>
