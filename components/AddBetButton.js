@@ -4,6 +4,7 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { Box } from '@mui/material';
 
     const AddBetButton = () => {
       const [fabBottom, setFabBottom] = useState (16);
@@ -52,8 +53,8 @@ import { useEffect, useState } from 'react';
             color="primary" 
             aria-label="add bet"
           >
-          <AddIcon sx={{ mr: 2 }} />
-          Add Bet
+          <AddIcon sx={{ mr: 1 }} />
+          <Box component="span" sx={{ mr: 1 }}>Add bet</Box>
       </Fab>
         );
       };

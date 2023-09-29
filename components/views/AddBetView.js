@@ -1,13 +1,14 @@
+'use client';
+
 import { Typography } from '@mui/material';
-import AddBetTextField from '@/components/AddBetTextField';
+import AddBetForm from '@/components/AddBetForm';
 
 const AddBetView = () => {
-
 
     return(
         <>
             <Typography pt={4} pb={4} variant='h4'>Add bet</Typography>
-            <AddBetTextField/>
+            <AddBetForm _title="" _sum ="" _date="" _odds="" outcome="Pending" />
         </>
         
     ); 

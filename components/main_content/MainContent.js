@@ -1,14 +1,18 @@
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
-import { drawerWidth } from '@/components/header/Header';
 
 
 const MainContent = ({ children }) => {
     return (
         <Box
             component="main"
-            sx={{ flexGrow: 1, pl: 5, pr: 5, pt: 3 }}
+            sx={{ 
+                flexGrow: 1, 
+                pt: 3,
+                pl: { xs: 2, sm: 5 },
+                pr: { xs: 2, sm: 5 }
+            }}
         >
             <Toolbar />
             <Container>
