@@ -19,7 +19,7 @@ db.serialize(() => {
     });
 
     db.run(`CREATE TABLE IF NOT EXISTS bets (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, 
-        sum INTEGER NOT NULL, date TEXT NOT NULL, odds REAL NOT NULL, outcome TEXT NOT NULL, 
+        sum INTEGER NOT NULL, date TEXT NOT NULL, odds REAL NOT NULL, status TEXT NOT NULL, 
         result INTEGER NOT NULL, title TEXT NOT NULL, FOREIGN KEY(user_id) REFERENCES users(id));`, (err) => {
         if(err) {
             console.error(err);
@@ -33,7 +33,7 @@ db.serialize(() => {
             console.error(err);
         } else {
             if(rows.count === 0) {
-                db.run(`INSERT INTO bets (user_id, sum, date, odds, outcome, result, title) VALUES 
+                db.run(`INSERT INTO bets (user_id, sum, date, odds, status, result, title) VALUES 
                     (1, 100, "2021-10-10", 1.5, "win", 50, "1st bet"),
                     (1, 100, "2022-01-10", 1.6, "win", 60, "2nd bet"),
                     (1, 100, "2022-10-02", 1.5, "loss", -100, "3rd bet"),
@@ -54,7 +54,7 @@ db.serialize(() => {
                     (1, 600, "2023-09-22", 1.5, "win", 300, "18th bet"),
                     (1, 300, "2023-09-26", 2.0, "loss", -300, "19th bet"),
                     (1, 100, "2023-09-27", 2.0, "loss", -100, "20th bet"),
-                    (1, 100, "2023-09-28", 2.0, "pending", 0, "21st bet")`
+                    (1, 100, "2023-09-28", 2.0, "open", 0, "21st bet")`
                     , (err) => {
                     if(err) {
                         
