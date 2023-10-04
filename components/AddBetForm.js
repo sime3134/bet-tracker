@@ -8,8 +8,8 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Button from '@mui/material/Button';
 import { z } from 'zod';
 
-const AddBetTextField = ({ _title, _sum, _date, _odds, outcome }) => {
-    const [selectedOption, setSelectedOption] = useState(outcome || "Pending");
+const AddBetTextField = ({ _title, _sum, _date, _odds, status }) => {
+    const [selectedOption, setSelectedOption] = useState(status || "Open");
     const [title, setTitle] = useState(_title || "");
     const [sum, setSum] = useState(_sum || "");
     const [date, setDate] = useState(_date || "");
@@ -18,14 +18,14 @@ const AddBetTextField = ({ _title, _sum, _date, _odds, outcome }) => {
     const [sumError, setSumError] = useState(null);
     const [dateError, setDateError] = useState(null);
     const [oddsError, setOddsError] = useState(null);
-    const [outcomeError, setOutcomeError] = useState(null);
+    const [statusError, setStatusError] = useState(null);
 
     const betSchema = z.object({
         title: z.string().min(1, "Title is required").max(50, "Title cannot be longer than 50 characters"),
         sum: z.number().min(1, "Sum must be greater than 0"),
         date: z.coerce.date().refine(date => date <= new Date(), "Date cannot be in the future"),
         odds: z.number().min(1, "Odds must be greater than or equal to 1"),
-        outcome: z.enum(["Win", "Loss", "Pending", "CashOut"], { message: "Outcome must be selected" }),
+        status: z.enum(["Win", "Loss", "Open", "Cash out"], { message: "Status must be selected" }),
     });
 
     const handleTitleChange = (event) => {
@@ -108,10 +108,10 @@ const AddBetTextField = ({ _title, _sum, _date, _odds, outcome }) => {
         setSelectedOption(value);
 
         try {
-            betSchema.pick({ outcome: true }).parse({ outcome: value });
-            setOutcomeError(null);
+            betSchema.pick({ status : true }).parse({ status: value });
+            setStatusError(null);
         } catch (err) {
-            setOutcomeError(err.errors[0].message);
+            setStatusError(err.errors[0].message);
         }
     };
 
@@ -145,12 +145,12 @@ const AddBetTextField = ({ _title, _sum, _date, _odds, outcome }) => {
                     error={oddsError != null} helperText={oddsError ?? ""} />
                 </Grid>
                 <Grid xs={12} >
-                    <TextField required select id="Outcome" label="Outcome" variant='outlined' value={selectedOption}
-                    onChange={handleSelectedOptionChange} error={outcomeError != null} helperText={outcomeError ?? ""}>
+                    <TextField required select id="Status" label="Status" variant='outlined' value={selectedOption}
+                    onChange={handleSelectedOptionChange} error={statusError != null} helperText={statusError ?? ""}>
                         <MenuItem value="Win">Win</MenuItem>
                         <MenuItem value="Loss">Loss</MenuItem>
                         <MenuItem value="CashOut">Cash Out</MenuItem>
-                        <MenuItem value="Pending">Pending</MenuItem>
+                        <MenuItem value="Status">Status</MenuItem>
                     </TextField> 
                 </Grid>
             </Grid>

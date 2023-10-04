@@ -21,7 +21,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                Bet placed: {bet.date} Amount bet: {bet.sum}, Odds: {bet.odds}, Result: {bet.outcome}
+                                Bet placed: {bet.date} Amount bet: {bet.sum}, Odds: {bet.odds}, Result: {bet.status}
                             </Typography>
                         </AccordionDetails>
                     </Accordion>

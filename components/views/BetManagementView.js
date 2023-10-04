@@ -1,15 +1,15 @@
 'use client';
 
-import FilterableList from '@/components/FilterableList';
+import BetTable from '@/components/BetTable';
 import AddBetButton from '@/components/AddBetButton';
 import { Typography, Box } from '@mui/material';
 
-const BetManagementView = ( { bets, setBets } ) => {
+const BetManagementView = ( { bets } ) => {
 
     return(
         <>
             <Typography pt={4} pb={4} variant='h4'>Your bets</Typography>
-            <FilterableList bets={bets} />
+            <BetTable originalBets={bets} />
             <Box mt={2} mb={2} display="flex" justifyContent="end">
                 <AddBetButton />
             </Box>

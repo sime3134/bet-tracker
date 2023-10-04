@@ -8,3 +8,10 @@ export const views = [
     { name: '/active', label: 'Active Bets', nested: true },
     { name: '/statistics', label: 'Statistics' },
 ];
+
+export const betStatus = [
+    {name: 'win', label: 'Win'},
+    {name: 'loss', label: 'Loss'},
+    {name: 'cashOut', label: 'Cash out'},
+    {name: 'open', label: 'Open'},
+]
